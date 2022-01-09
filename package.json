@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "sirv-cli": "^1.0.0",
-    "lodash-es": "^4.17.21"
+    "svelte-fusioncharts": "^1.0.0"
   },
   "type": "module"
 }

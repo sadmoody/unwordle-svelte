@@ -75,5 +75,5 @@ export default {
 	watch: {
 		clearScreen: false
 	},
-	external: ['lodash-es']
+	external: ['layercake']
 };
