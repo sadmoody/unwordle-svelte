@@ -234,7 +234,8 @@
 					<p>This website is purposefully "unplayable". It is just a tool to help you when you're stuck. If you want to play Wordle, go to the <a href="https://www.powerlanguage.co.uk/wordle/">THE OFFICIAL WEBSITE</a></p>
 					<p>The interface is clunky and sloppy because I don't know what I'm doing.</p>
 					<p><strong><a href="https://twitter.com/moodyhikmet">I'm on Twitter as well</a></strong></p>
-					<p>Yes if you use this website - you're cheating.</p>
+					<p>You can find the source code for this site at this <strong><a href="https://github.com/sadmoody/unwordle-svelte">Github Repo</a></strong></p>
+					<p>Yes if you use this website when you're playing - you're cheating. This is supposed to be a poor-man's Stockfish but for Wordle.</p>
 				</div>
 			</section>
 		</game-help>
