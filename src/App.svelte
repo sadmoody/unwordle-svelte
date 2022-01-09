@@ -2,8 +2,8 @@
 	import { wordle_answers } from './words.js';
 	import { getBlankLetterFrequency } from './utils/getBlankLetterFrequency.js';
 	import { getBlankPotentialLetters } from './utils/getBlankPotentialLetters.js';
-	import { cleanPotentialLetters } from './utils/cleanPotentialLetters';
-	import { sortObject } from './utils/sortObject';
+	import { cleanPotentialLetters } from './utils/cleanPotentialLetters.js';
+	import { sortObject } from './utils/sortObject.js';
 
 	let name = "Unwordle";
 	let WORDLENGTH = 5;
