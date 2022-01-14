@@ -5,27 +5,10 @@
 	import { cleanPotentialLetters } from './utils/cleanPotentialLetters.js';
 	import { sortObject } from './utils/sortObject.js';
 
-	let name = "Unwordle";
 	let WORDLENGTH = 5;
 	let showInstructions = false;
 
-	function makeGuess(guess, answer) {
-		let result = [];
-		for (let pos=0; pos<answer.length; pos++) {
-			if (guess[pos].letter === answer[pos]) {
-				result.push(2);
-			} else if (answer.includes(guess[pos].letter)) {
-				result.push(1);
-			} else {
-				result.push(0);
-			}
-		}
-		return result;
-	}
-
 	let relevanceScores = {};
-	let mustContain = [];
-	let answer = "tooth";
 	let filteredAnswers = wordle_answers;
 	let letterFrequency = getBlankLetterFrequency();
 	let entries=[[]];
