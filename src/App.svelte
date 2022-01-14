@@ -1,8 +1,7 @@
 <script>
 	import { wordle_answers } from './words.js';
 	import { getBlankLetterFrequency } from './utils/getBlankLetterFrequency.js';
-	import { getBlankPotentialLetters } from './utils/getBlankPotentialLetters.js';
-	import { cleanPotentialLetters } from './utils/cleanPotentialLetters.js';
+	import { isSolutionValidForEntry } from './utils/isSolutionValidForEntry.js';
 	import { sortObject } from './utils/sortObject.js';
 
 	let WORDLENGTH = 5;
@@ -14,39 +13,23 @@
 	let entries=[[]];
 
 	function runAnalysis() {
-		mustContain = [];
-		let potentialLetters = getBlankPotentialLetters();
-		for (let entry_i=0; entry_i < entries.length-1; entry_i++) {
-			let entry = entries[entry_i];
-			for (let pos=0; pos<WORDLENGTH; pos++) {
-				if (entry[pos].state != 0 && !mustContain.includes(entry[pos].letter)) {
-					mustContain.push(entry[pos].letter);
-				}
-			}
-			potentialLetters = cleanPotentialLetters(entry, potentialLetters);
-		}
-
 		filteredAnswers = wordle_answers;
-		let toRemove = [];
-		filteredAnswers.forEach( word => {
-			let remove = false;
-			for (let pos=0; pos<word.length; pos++) {
-				if (!potentialLetters[pos].includes(word[pos])){
-					remove = true;
+
+		filteredAnswers = filteredAnswers.filter(word => {
+			let keepWord = true;
+
+			for (let entryIndex = 0; entryIndex < entries.length - 1; entryIndex++) {
+				const entry = entries[entryIndex];
+
+				if (!isSolutionValidForEntry(entry, word)) {
+					keepWord = false;
 					break;
 				}
 			}
-			if (!remove) {
-				mustContain.forEach(letter => {
-					if (!word.includes(letter)) {
-						remove = true;
-					}
-				});
-			}
-			if (remove)
-				toRemove.push(word);
+
+			return keepWord;
 		});
-		filteredAnswers = filteredAnswers.filter(word => !toRemove.includes(word));
+
 		letterFrequency = getBlankLetterFrequency();
 		filteredAnswers.forEach(word => {
 			for (let pos=0; pos<word.length; pos++) {
