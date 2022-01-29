@@ -6,6 +6,7 @@
 
 	let WORDLENGTH = 5;
 	let showInstructions = false;
+	let darkMode = false;
 
 	let relevanceScores = {};
 	let filteredAnswers = wordle_answers;
@@ -96,6 +97,13 @@
 		}
 		return "empty";
 	}
+	function isDarkModeOn(state) {
+		if (state === 1) {
+			return "darkMode";
+		} else {
+			return "";
+		}
+	}
 
 </script>
 
@@ -111,8 +119,22 @@
 				</game-icon>
 			</button>
 		</div>
-		<div class="title"> UNWORDLE </div>
-		<div class="menu">
+		<div class="title {darkMode ? 'darkModeText': ''}"> UNWORDLE </div>
+		<div class="darkMode">
+			<input
+				type="checkbox"
+				id="darkMode"
+				on:click={() => { 
+					darkMode = !darkMode;
+					const body = document.getElementsByTagName("body");
+					if (darkMode) {
+						body[0].style.background="#121213";
+					} else {
+						body[0].style.background="#FFFFFF";
+					}
+				}}
+			/>
+			<label style="display:inline" class="{darkMode ? 'darkModeText': ''} ">Dark Mode</label>
 		</div>
 	</header>
 	<div id="board-container">
@@ -134,10 +156,10 @@
 				</game-row>
 			{/each}
 			<div class="suggestions">
-				<div class="suggestion" id="title">Best words to guess next</div>
+				<div class="suggestion {darkMode ? 'darkModeText': ''}" id="title">Best words to guess next</div>
 				{#each Object.entries(relevanceScores) as [word, score], index}
 					{#if index < 10}
-						<div class="suggestion">{index+1}. {word}</div>
+						<div class="suggestion {darkMode ? 'darkModeText': ''}">{index+1}. {word}</div>
 					{/if}
 				{/each}
 			</div>
@@ -415,6 +437,13 @@
 		text-transform: uppercase;
 		user-select: none;
 		opacity: 1;
+	}
+	.darkModeBackground {
+		background-color: #121213;
+	}
+
+	.darkModeText {
+		color: #d7dadc;
 	}
 
 	:root {
