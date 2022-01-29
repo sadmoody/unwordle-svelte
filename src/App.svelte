@@ -97,13 +97,6 @@
 		}
 		return "empty";
 	}
-	function isDarkModeOn(state) {
-		if (state === 1) {
-			return "darkMode";
-		} else {
-			return "";
-		}
-	}
 
 </script>
 
